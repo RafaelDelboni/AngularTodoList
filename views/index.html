@@ -42,7 +42,7 @@
             <tbody>
                 <tr ng-repeat="doneTodos in doneTodos">
                     <td class="col-md-9"><del>{{doneTodos.name}}</del></td>
-                    <td class="col-md-2" ng-bind="doneTodos.date | date:'MM/dd/yyyy hh:mm:ss'"></td>
+                    <td class="col-md-2" ng-bind="doneTodos.date | date:'MM/dd/yyyy HH:mm:ss'"></td>
                     <td class="col-md-1 text-center"><button type="submit" class="btn btn-danger" ng-click="removeDoneTodo($index)">X</button></td>
                 </tr>
             </tbody>                   
