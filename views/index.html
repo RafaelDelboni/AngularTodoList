@@ -1,0 +1,51 @@
+<div class="center-text">
+    <!-- Todos input -->
+    <div class="row">
+        <h1>My todos</h1>
+        <form role="form" ng-submit="addTodo()">
+            <div class="input-group lead">
+                <input type="text" ng-model="todo" placeholder="What needs to be done?" class="form-control">
+                <span class="input-group-btn">
+                    <input type="submit" class="btn btn-primary" value="Add">
+                </span>
+            </div>
+            <div class="alert alert-warning" role="alert" ng-show="!checkExistsTodo(todo)">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>Warning!</strong> This Todo already exists :/
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <!-- Todos list -->
+        <p class="input-group" ng-repeat="todo in todos" >
+            <input type="text" ng-model="todo" ng-blur="updateTodo($index, todo)" ng-enter="updateTodo($index, todo)" class="form-control">
+            <span class="input-group-btn">
+                <button class="btn btn-success" ng-click="markDoneTodo($index)" aria-label="Mark as done">
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                </button>
+                <button class="btn btn-danger" ng-click="removeTodo($index)" aria-label="Remove">X</button>
+            </span>
+        </p>
+    </div>
+    <div ng-show="doneTodos.length" class="row">
+        <hr>
+
+        <h3>Done stuff</h3>
+        <table class="table table-striped text-left">
+            <thead>
+                <tr>
+                    <th class="col-md-9">Todo</th>
+                    <th class="col-md-2">Date Finished</th>
+                    <th class="col-md-1 text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="doneTodos in doneTodos">
+                    <td class="col-md-9"><del>{{doneTodos.name}}</del></td>
+                    <td class="col-md-2" ng-bind="doneTodos.date | date:'MM/dd/yyyy hh:mm:ss'"></td>
+                    <td class="col-md-1 text-center"><button type="submit" class="btn btn-danger" ng-click="removeDoneTodo($index)">X</button></td>
+                </tr>
+            </tbody>                   
+        </table>
+    </div>
+</div>
